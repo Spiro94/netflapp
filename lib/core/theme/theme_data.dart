@@ -10,13 +10,33 @@ class AppTheme {
 
   static ThemeData themeData(ColorScheme colorScheme, Color focusColor) {
     return ThemeData(
+      textSelectionTheme:
+          TextSelectionThemeData(cursorColor: colorScheme.secondary),
       colorScheme: colorScheme,
-      // textTheme: _textTheme,
+      textTheme: _textTheme,
       primaryColor: const Color(0xFF030303),
       appBarTheme: AppBarTheme(
+        foregroundColor: colorScheme.secondary,
         backgroundColor: colorScheme.background,
         elevation: 0,
-        iconTheme: IconThemeData(color: colorScheme.primary),
+        iconTheme: IconThemeData(color: colorScheme.secondary),
+      ),
+      outlinedButtonTheme: OutlinedButtonThemeData(
+        style: ButtonStyle(
+          minimumSize:
+              MaterialStateProperty.all<Size>(const Size.fromHeight(40)),
+          backgroundColor: MaterialStateProperty.all<Color>(
+            colorScheme.primary,
+          ),
+          foregroundColor: MaterialStateProperty.all<Color>(
+            _lightFillColor,
+          ),
+          shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+            RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(30.0),
+            ),
+          ),
+        ),
       ),
       fontFamily: 'Gilroy',
       iconTheme: IconThemeData(color: colorScheme.onPrimary),
@@ -32,17 +52,31 @@ class AppTheme {
         ),
         contentTextStyle: _textTheme.subtitle1?.apply(color: _darkFillColor),
       ),
+      bottomSheetTheme: BottomSheetThemeData(
+        backgroundColor: _lightFillColor.withOpacity(0.5),
+      ),
+      inputDecorationTheme: InputDecorationTheme(
+        hintStyle: TextStyle(color: colorScheme.secondary),
+        focusedBorder: UnderlineInputBorder(
+          borderSide: BorderSide(
+              style: BorderStyle.solid, color: colorScheme.secondary),
+        ),
+        enabledBorder: UnderlineInputBorder(
+          borderSide: BorderSide(
+              style: BorderStyle.solid, color: colorScheme.secondary),
+        ),
+      ),
     );
   }
 
   static const ColorScheme darkColorScheme = ColorScheme(
     primary: Color(0xFFFFD233),
     primaryVariant: Color(0xFF1CDEC9),
-    secondary: Color(0xFF191919),
-    secondaryVariant: Color(0xFF451B6F),
+    secondary: Color(0xFF8C8C8C),
+    secondaryVariant: Color(0xFF8C8C8C),
     background: Color(0xFF191919),
     surface: Color(0xFF191919),
-    onBackground: Color(0x0DFFFFFF), // White with 0.05 opacity
+    onBackground: Color(0x0DFFFFFF),
     error: _darkFillColor,
     onError: _darkFillColor,
     onPrimary: _darkFillColor,
@@ -66,6 +100,6 @@ class AppTheme {
     subtitle2: TextStyle(fontWeight: _medium, fontSize: 14.0),
     bodyText2: TextStyle(fontWeight: _regular, fontSize: 16.0),
     headline6: TextStyle(fontWeight: _bold, fontSize: 16.0),
-    button: TextStyle(fontWeight: _semiBold, fontSize: 14.0),
+    button: TextStyle(fontWeight: _semiBold, fontSize: 18.0),
   );
 }
