@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:netflapp/presentation/screens/home/home_page.dart';
-import 'package:netflapp/presentation/screens/login/widgets/background_login.dart';
-import 'package:netflapp/presentation/widgets/button_widget.dart';
+import 'widgets/background_login.dart';
+import '../navigation/navigation_page.dart';
+import '../../widgets/button_widget.dart';
 
 class IntroLoginPage extends StatefulWidget {
   static const String routeName = 'intro_login';
@@ -72,8 +72,10 @@ class _IntroLoginPageState extends State<IntroLoginPage> {
                                 ),
                                 ButtonWidget(
                                     onPressed: () {
-                                      Navigator.pushNamedAndRemoveUntil(context,
-                                          HomePage.routeName, (route) => false);
+                                      Navigator.pushNamedAndRemoveUntil(
+                                          context,
+                                          NavigationPage.routeName,
+                                          (route) => false);
                                     },
                                     child: const Text('Log in'),
                                     buttonType: ButtonType.secondary),

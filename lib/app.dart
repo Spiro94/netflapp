@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:netflapp/core/routes/routes.dart';
-import 'package:netflapp/core/theme/theme_data.dart';
-import 'package:netflapp/presentation/screens/login/intro_login.dart';
+import 'core/routes/routes.dart';
+import 'core/theme/theme_data.dart';
+import 'presentation/screens/navigation/navigation_page.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
@@ -11,7 +11,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       theme: AppTheme.darkThemeData,
       title: 'Netflapp',
-      initialRoute: IntroLoginPage.routeName,
+      initialRoute: NavigationPage.routeName,
       onGenerateRoute: RouteGenerator.generateRoute,
     );
   }
