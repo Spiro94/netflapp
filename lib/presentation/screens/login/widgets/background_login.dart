@@ -17,7 +17,6 @@ class BackgroundLoginWidget extends StatelessWidget {
               image: AssetImage('assets/images/poster_login.jpeg'),
             ),
           ),
-          child: Center(child: content),
         ),
         Positioned(
           top: 100,
@@ -26,6 +25,7 @@ class BackgroundLoginWidget extends StatelessWidget {
             style: Theme.of(context).textTheme.headline4,
           ),
         ),
+        content,
       ],
     );
   }

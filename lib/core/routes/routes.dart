@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:netflapp/presentation/screens/splash/splash_page.dart';
 
 import '../../presentation/screens/login/intro_login.dart';
 import '../../presentation/screens/navigation/navigation_page.dart';
@@ -6,6 +7,8 @@ import '../../presentation/screens/navigation/navigation_page.dart';
 class RouteGenerator {
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
+      case SplashPage.routeName:
+        return MaterialPageRoute(builder: (_) => const SplashPage());
       case NavigationPage.routeName:
         return MaterialPageRoute(builder: (_) => const NavigationPage());
       case IntroLoginPage.routeName:
