@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../core/dependency_injection/dependency_injection.dart';
 import '../../widgets/button_widget.dart';
@@ -140,7 +141,12 @@ class _IntroLoginPageState extends State<IntroLoginPage> {
                         height: 20,
                       ),
                       InkWell(
-                        onTap: () {},
+                        onTap: () async {
+                          SharedPreferences prefs =
+                              await SharedPreferences.getInstance();
+
+                          prefs.setString('favorites', '[]');
+                        },
                         child: Container(
                           decoration: BoxDecoration(
                             border: Border(

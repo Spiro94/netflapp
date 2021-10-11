@@ -92,9 +92,9 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
 
     List<int> indexes = [];
     List<TvShowModel> newRecommended = [];
-    for (var serie in recommendedSeries) {
+    for (var serie in favoriteSeries) {
       int index =
-          favoriteSeries.indexWhere((element) => element.id == serie.id);
+          recommendedSeries.indexWhere((element) => element.id == serie.id);
       if (index != -1) indexes.add(index);
     }
 
