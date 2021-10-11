@@ -3,14 +3,16 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
 class RatingStarsWidget extends StatelessWidget {
   final double calification;
-  const RatingStarsWidget({required this.calification, Key? key})
+  final double size;
+  const RatingStarsWidget(
+      {required this.calification, this.size = 10, Key? key})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return RatingBar(
       ignoreGestures: true,
-      itemSize: 10,
+      itemSize: size,
       initialRating: calification / 2,
       direction: Axis.horizontal,
       allowHalfRating: true,
