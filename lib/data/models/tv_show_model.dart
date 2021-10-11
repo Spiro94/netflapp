@@ -9,9 +9,15 @@ class TvShowModel extends Equatable {
   final int? numberOfSeasons;
   final bool isFavorite;
 
-  const TvShowModel(this.id, this.posterPath, this.name, this.voteAverage,
-      this.numberOfEpisodes, this.numberOfSeasons,
-      [this.isFavorite = false]);
+  const TvShowModel(
+    this.id,
+    this.posterPath,
+    this.name,
+    this.voteAverage,
+    this.numberOfEpisodes,
+    this.numberOfSeasons, [
+    this.isFavorite = false,
+  ]);
 
   factory TvShowModel.fromJson(Map<String, dynamic> json) {
     return TvShowModel(

@@ -19,7 +19,7 @@ class TvShowRepositoryImpl implements TvShowRepository {
   Future<Either<Failure, List<TvShowModel>>> getPopular() async {
     List<TvShowModel> tvShows = [];
     try {
-      var response = await http.get(Uri.parse(
+      var response = await client.get(Uri.parse(
           url + '/tv/popular?api_key=$movieApiKey&language=en-US&page=1'));
       if (response.statusCode == 200) {
         var jsonMap = json.decode(response.body);
@@ -48,7 +48,7 @@ class TvShowRepositoryImpl implements TvShowRepository {
   Future<Either<Failure, List<TvShowModel>>> getRecommended() async {
     List<TvShowModel> tvShows = [];
     try {
-      var response = await http.get(Uri.parse(
+      var response = await client.get(Uri.parse(
           url + '/tv/top_rated?api_key=$movieApiKey&language=en-US&page=1'));
       if (response.statusCode == 200) {
         var jsonMap = json.decode(response.body);
