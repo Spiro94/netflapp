@@ -27,8 +27,11 @@ class SplashPage extends StatelessWidget {
         }
       },
       child: const Scaffold(
+        backgroundColor: Colors.black,
         body: Center(
-          child: Image(image: AssetImage('assets/images/netflapp.jpg')),
+          child: Image(
+            image: AssetImage('assets/images/netflapp.png'),
+          ),
         ),
       ),
     );
