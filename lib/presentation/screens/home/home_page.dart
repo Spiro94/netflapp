@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:netflapp/presentation/screens/home/bloc/home_bloc.dart';
+
+import '../../../core/dependency_injection/dependency_injection.dart';
 import '../../widgets/series_info_widget.dart';
 import '../../widgets/series_poster_widget.dart';
+import 'bloc/home_bloc.dart';
 
 class HomePage extends StatefulWidget {
   static const title = 'Home';
@@ -84,7 +86,12 @@ class _HomePageState extends State<HomePage> {
               const SizedBox(
                 height: 20,
               ),
-              ...state.recommended.map((e) => SeriesInfoWidget(model: e))
+              ...state.recommended.map((e) => SeriesInfoWidget(
+                    model: e,
+                    onPressed: (delete) {
+                      instance<HomeBloc>().add(AddFavoriteFromHome(e, delete));
+                    },
+                  ))
             ],
           );
         } else {

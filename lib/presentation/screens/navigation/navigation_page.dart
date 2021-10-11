@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:netflapp/core/dependency_injection/dependency_injection.dart';
-import 'package:netflapp/presentation/screens/home/bloc/home_bloc.dart';
-import 'package:netflapp/presentation/screens/login/bloc/authentication_bloc.dart';
-import 'package:netflapp/presentation/screens/login/intro_login.dart';
+
+import '../../../core/dependency_injection/dependency_injection.dart';
+import '../favorites/favorites_page.dart';
+import '../home/bloc/home_bloc.dart';
 import '../home/home_page.dart';
+import '../login/bloc/authentication_bloc.dart';
+import '../login/intro_login.dart';
 
 class NavigationPage extends StatefulWidget {
   static const String routeName = '/';
@@ -18,6 +20,7 @@ class _NavigationPageState extends State<NavigationPage> {
   int _index = 0;
   Map<String, Widget> pages = {
     HomePage.title: const HomePage(),
+    FavoritesPage.title: const FavoritesPage(),
   };
 
   @override
@@ -39,7 +42,7 @@ class _NavigationPageState extends State<NavigationPage> {
       child: Scaffold(
         appBar: AppBar(
           centerTitle: true,
-          title: Text(pages.keys.elementAt(0)),
+          title: Text(pages.keys.elementAt(_index)),
           actions: [
             IconButton(
               onPressed: () {

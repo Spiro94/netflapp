@@ -7,17 +7,16 @@ import 'rating_stars_widget.dart';
 
 class SeriesInfoWidget extends StatefulWidget {
   final TvShowModel model;
-  const SeriesInfoWidget({required this.model, Key? key}) : super(key: key);
+  final ValueChanged<bool> onPressed;
+  const SeriesInfoWidget(
+      {required this.model, required this.onPressed, Key? key})
+      : super(key: key);
 
   @override
   State<SeriesInfoWidget> createState() => _SeriesInfoWidgetState();
 }
 
 class _SeriesInfoWidgetState extends State<SeriesInfoWidget> {
-  IconData _iconFavorite = Icons.favorite_border_rounded;
-  Color? _color;
-  bool _isPressed = false;
-
   @override
   Widget build(BuildContext context) {
     ThemeData? _theme = Theme.of(context);
@@ -26,6 +25,7 @@ class _SeriesInfoWidgetState extends State<SeriesInfoWidget> {
       margin: const EdgeInsets.symmetric(vertical: 20),
       height: 150,
       child: Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           SizedBox(
             width: 100,
@@ -72,20 +72,16 @@ class _SeriesInfoWidgetState extends State<SeriesInfoWidget> {
                     ),
                     IconButton(
                         onPressed: () {
-                          _isPressed = !_isPressed;
-                          if (_isPressed) {
-                            _iconFavorite = Icons.favorite_rounded;
-                            _color = _theme.colorScheme.primary;
-                          } else {
-                            _iconFavorite = Icons.favorite_border_rounded;
-                            _color = _theme.colorScheme.onPrimary;
-                          }
-                          setState(() {});
+                          widget.onPressed(widget.model.isFavorite);
                         },
                         icon: Icon(
-                          _iconFavorite,
-                          color: _color,
-                        ))
+                          widget.model.isFavorite
+                              ? Icons.favorite_rounded
+                              : Icons.favorite_border_rounded,
+                          color: widget.model.isFavorite
+                              ? _theme.colorScheme.primary
+                              : _theme.colorScheme.onPrimary,
+                        )),
                   ],
                 ),
               ],

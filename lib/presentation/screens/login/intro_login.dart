@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:netflapp/core/dependency_injection/dependency_injection.dart';
+
+import '../../../core/dependency_injection/dependency_injection.dart';
+import '../../widgets/button_widget.dart';
+import '../navigation/navigation_page.dart';
 import 'bloc/authentication_bloc.dart';
 import 'widgets/background_login.dart';
-import '../navigation/navigation_page.dart';
-import '../../widgets/button_widget.dart';
 
 class IntroLoginPage extends StatefulWidget {
   static const String routeName = 'intro_login';
@@ -155,19 +156,20 @@ class _IntroLoginPageState extends State<IntroLoginPage> {
                 ),
                 if (state is AuthenticationLoading)
                   Container(
-                      color: Colors.black87,
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: const [
-                          CircularProgressIndicator(),
-                          SizedBox(
-                            height: 15,
-                          ),
-                          Text(
-                            'Loading',
-                          ),
-                        ],
-                      ))
+                    color: Colors.black87,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: const [
+                        CircularProgressIndicator(),
+                        SizedBox(
+                          height: 15,
+                        ),
+                        Text(
+                          'Loading',
+                        ),
+                      ],
+                    ),
+                  )
               ],
             ),
           ),

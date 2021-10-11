@@ -5,6 +5,7 @@ import 'package:http/http.dart' as http;
 import 'package:netflapp/core/utils/constants.dart';
 import 'package:netflapp/data/models/tv_show_model.dart';
 import 'package:netflapp/domain/respository/tv_show_respository.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../core/failures/failure.dart';
 import '../../domain/entities/tv_show.dart';
@@ -70,5 +71,44 @@ class TvShowRepositoryImpl implements TvShowRepository {
       return left(Failure());
     }
     return Right(tvShows);
+  }
+
+  @override
+  Future<bool> addFavorite(TvShowModel model, {bool delete = false}) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String favorites = prefs.getString('favorites') ?? '[]';
+    List<TvShowModel> models = [];
+    var jsonDecode = json.decode(favorites);
+
+    for (var item in jsonDecode) {
+      models.add(TvShowModel.fromJson(item));
+    }
+
+    if (models.any((element) => element.id == model.id)) {
+      if (delete == true) {
+        models.removeWhere((item) => item.id == model.id);
+      }
+    } else {
+      models.add(model);
+    }
+
+    var data = json.encode(
+      models.map<Map<String, dynamic>>((model) => model.toJson()).toList(),
+    );
+
+    return await prefs.setString('favorites', data);
+  }
+
+  @override
+  Future<Either<Failure, List<TvShowModel>>> getFavorites() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String favorites = prefs.getString('favorites') ?? '[]';
+    List<TvShowModel> models = [];
+    var jsonDecode = json.decode(favorites);
+
+    for (var item in jsonDecode) {
+      models.add(TvShowModel.fromJson(item));
+    }
+    return Right(models);
   }
 }
