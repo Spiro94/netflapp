@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:netflapp/core/dependency_injection/dependency_injection.dart';
+import 'package:netflapp/presentation/screens/home/bloc/home_bloc.dart';
 import 'package:netflapp/presentation/screens/login/bloc/authentication_bloc.dart';
 import 'package:netflapp/presentation/screens/login/intro_login.dart';
 import '../home/home_page.dart';
@@ -18,6 +19,12 @@ class _NavigationPageState extends State<NavigationPage> {
   Map<String, Widget> pages = {
     HomePage.title: const HomePage(),
   };
+
+  @override
+  void initState() {
+    instance<HomeBloc>().add(LoadTvShows());
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {

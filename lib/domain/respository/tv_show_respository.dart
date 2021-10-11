@@ -1,8 +1,9 @@
 import 'package:dartz/dartz.dart';
-import 'package:netflapp/core/failures/failure.dart';
-import 'package:netflapp/domain/entities/tv_show.dart';
 
-abstract class TvRepository {
-  Future<Either<Failure, List<TvShow>>> getPopular();
-  Future<Either<Failure, List<TvShow>>> getRecommended();
+import '../../core/failures/failure.dart';
+import '../../data/models/tv_show_model.dart';
+
+abstract class TvShowRepository {
+  Future<Either<Failure, List<TvShowModel>>> getPopular();
+  Future<Either<Failure, List<TvShowModel>>> getRecommended();
 }

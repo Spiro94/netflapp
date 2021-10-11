@@ -1,32 +1,42 @@
 import 'package:flutter/material.dart';
 
+import '../../core/utils/constants.dart';
+import '../../data/models/tv_show_model.dart';
+import 'rating_stars_widget.dart';
+
 class SeriesPosterWidget extends StatelessWidget {
-  const SeriesPosterWidget({Key? key}) : super(key: key);
+  final TvShowModel model;
+  const SeriesPosterWidget({required this.model, Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.only(right: 20),
-      width: 125,
-      color: Colors.red,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Container(
-            height: 180,
-            color: Colors.amber,
-          ),
-          const Text(
-            'Series Title looooong',
-            overflow: TextOverflow.clip,
-          ),
-          const Text(
-            'Calification',
-            textAlign: TextAlign.start,
-          ),
-        ],
+    return GestureDetector(
+      behavior: HitTestBehavior.translucent,
+      onTap: () {},
+      child: Container(
+        margin: const EdgeInsets.only(right: 20),
+        width: 125,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            SizedBox(
+              height: 150,
+              child: ClipRRect(
+                  borderRadius: BorderRadius.circular(8.0),
+                  child: Image(
+                      image:
+                          NetworkImage(imageUrl + (model.posterPath ?? '')))),
+            ),
+            Text(
+              model.name ?? '',
+              overflow: TextOverflow.clip,
+              style: Theme.of(context).textTheme.caption,
+            ),
+            RatingStarsWidget(calification: model.voteAverage ?? 1),
+          ],
+        ),
       ),
     );
   }

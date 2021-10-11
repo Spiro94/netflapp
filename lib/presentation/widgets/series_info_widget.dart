@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 
+import '../../core/utils/constants.dart';
+import '../../data/models/tv_show_model.dart';
 import 'button_widget.dart';
+import 'rating_stars_widget.dart';
 
 class SeriesInfoWidget extends StatefulWidget {
-  const SeriesInfoWidget({Key? key}) : super(key: key);
+  final TvShowModel model;
+  const SeriesInfoWidget({required this.model, Key? key}) : super(key: key);
 
   @override
   State<SeriesInfoWidget> createState() => _SeriesInfoWidgetState();
@@ -23,53 +27,69 @@ class _SeriesInfoWidgetState extends State<SeriesInfoWidget> {
       height: 150,
       child: Row(
         children: [
-          Container(
+          SizedBox(
             width: 100,
-            color: Colors.green,
+            child: ClipRRect(
+                borderRadius: BorderRadius.circular(8.0),
+                child: Image(
+                    image: NetworkImage(
+                        imageUrl + (widget.model.posterPath ?? '')))),
           ),
           const SizedBox(
             width: 30,
           ),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              const Text('Series Title'),
-              const Text('Stars'),
-              const Text('Calification'),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  SizedBox(
-                    width: 125,
-                    child: ButtonWidget(
-                      onPressed: () {},
-                      child: Text(
-                        'Watch Now',
-                        style: _theme.textTheme.headline5
-                            ?.apply(color: Colors.black, fontWeightDelta: 5),
+          SizedBox(
+            width: 180,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                Text(
+                  widget.model.name ?? '',
+                  overflow: TextOverflow.clip,
+                  style: Theme.of(context).textTheme.caption,
+                ),
+                RatingStarsWidget(calification: widget.model.voteAverage ?? 1),
+                Text(
+                  'IMDb: ${widget.model.voteAverage}',
+                  style: Theme.of(context).textTheme.overline?.apply(
+                        color: Theme.of(context).colorScheme.secondary,
+                      ),
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    SizedBox(
+                      width: 125,
+                      child: ButtonWidget(
+                        onPressed: () {},
+                        child: Text(
+                          'Watch Now',
+                          style: _theme.textTheme.headline5
+                              ?.apply(color: Colors.black, fontWeightDelta: 5),
+                        ),
                       ),
                     ),
-                  ),
-                  IconButton(
-                      onPressed: () {
-                        _isPressed = !_isPressed;
-                        if (_isPressed) {
-                          _iconFavorite = Icons.favorite_rounded;
-                          _color = _theme.colorScheme.primary;
-                        } else {
-                          _iconFavorite = Icons.favorite_border_rounded;
-                          _color = _theme.colorScheme.onPrimary;
-                        }
-                        setState(() {});
-                      },
-                      icon: Icon(
-                        _iconFavorite,
-                        color: _color,
-                      ))
-                ],
-              ),
-            ],
+                    IconButton(
+                        onPressed: () {
+                          _isPressed = !_isPressed;
+                          if (_isPressed) {
+                            _iconFavorite = Icons.favorite_rounded;
+                            _color = _theme.colorScheme.primary;
+                          } else {
+                            _iconFavorite = Icons.favorite_border_rounded;
+                            _color = _theme.colorScheme.onPrimary;
+                          }
+                          setState(() {});
+                        },
+                        icon: Icon(
+                          _iconFavorite,
+                          color: _color,
+                        ))
+                  ],
+                ),
+              ],
+            ),
           )
         ],
       ),
