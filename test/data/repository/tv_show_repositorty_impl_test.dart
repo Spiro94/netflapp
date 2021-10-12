@@ -275,4 +275,63 @@ void main() {
       expect(failure, Failure());
     });
   });
+
+  group('GetRecent', () {
+    List<TvShowModel> tRecent = [
+      const TvShowModel(
+          67419, '/zra8NrzxaEeunRWJmUm3HZOL4sd.jpg', 'Victoria', 1.39, 0, 0)
+    ];
+    test('should perform a GET request on the endpoint URL', () async {
+      //arrange
+      when(() => mockHttpClient.get(any())).thenAnswer(
+          (_) async => http.Response(jsonReader('recent.json'), 200, headers: {
+                HttpHeaders.contentTypeHeader:
+                    'application/json; charset=utf-8',
+              }));
+
+      //act
+      await tvShowRepositoryImpl.getRecents();
+      //assert
+
+      verify(() => mockHttpClient.get(Uri.parse(url +
+          '/tv/airing_today?api_key=$movieApiKey&language=en-US&page=1')));
+    });
+
+    test(
+        'should return a list of recent TvShowModel when the response code is 200 (success)',
+        () async {
+      //arrange
+      when(() => mockHttpClient.get(any())).thenAnswer(
+          (_) async => http.Response(jsonReader('recent.json'), 200, headers: {
+                HttpHeaders.contentTypeHeader:
+                    'application/json; charset=utf-8',
+              }));
+
+      //act
+      final result = await tvShowRepositoryImpl.getRecommended();
+      var list = [];
+
+      result.fold((l) => null, (r) => list = r);
+      //assert
+      expect(list, tRecent);
+    });
+
+    test('should return a failure when the response code is 404 or other',
+        () async {
+      //arrange
+      when(() => mockHttpClient.get(any())).thenAnswer(
+          (_) async => http.Response('Error ocurred', 404, headers: {
+                HttpHeaders.contentTypeHeader:
+                    'application/json; charset=utf-8',
+              }));
+
+      //act
+      final result = await tvShowRepositoryImpl.getRecents();
+      Failure? failure;
+
+      result.fold((l) => failure = l, (r) => null);
+      //assert
+      expect(Failure(), failure);
+    });
+  });
 }

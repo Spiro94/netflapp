@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../widgets/loading_widget.dart';
 
 import '../../../core/dependency_injection/dependency_injection.dart';
+import '../../widgets/loading_widget.dart';
 import '../../widgets/series_info_widget.dart';
 import '../../widgets/series_poster_widget.dart';
 import 'bloc/home_bloc.dart';
@@ -16,6 +16,12 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  @override
+  void initState() {
+    instance<HomeBloc>().add(LoadTvShows());
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     ThemeData _theme = Theme.of(context);

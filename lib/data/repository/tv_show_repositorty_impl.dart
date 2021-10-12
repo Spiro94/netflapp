@@ -174,4 +174,33 @@ class TvShowRepositoryImpl implements TvShowRepository {
     }
     return Right(tvShow);
   }
+
+  @override
+  Future<Either<Failure, List<TvShowModel>>> getRecents() async {
+    List<TvShowModel> tvShows = [];
+    try {
+      var response = await client.get(Uri.parse(
+          url + '/tv/airing_today?api_key=$movieApiKey&language=en-US&page=1'));
+      if (response.statusCode == 200) {
+        var jsonMap = json.decode(response.body);
+        for (var tvShow in jsonMap['results']) {
+          var entity = TvShow.fromJson(tvShow);
+          var model = TvShowModel(
+            entity.id ?? 1,
+            entity.posterPath ?? '',
+            entity.name ?? '',
+            entity.voteAverage ?? 0.0,
+            entity.numberOfEpisodes ?? 0,
+            entity.numberOfSeasons ?? 0,
+          );
+          tvShows.add(model);
+        }
+      } else {
+        return Left(Failure());
+      }
+    } on Exception {
+      return Left(Failure());
+    }
+    return Right(tvShows);
+  }
 }

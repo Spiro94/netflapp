@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import '../recents/recents_page.dart';
 
 import '../../../core/dependency_injection/dependency_injection.dart';
 import '../favorites/favorites_page.dart';
-import '../home/bloc/home_bloc.dart';
 import '../home/home_page.dart';
 import '../login/bloc/authentication_bloc.dart';
 import '../login/intro_login.dart';
@@ -21,13 +21,11 @@ class _NavigationPageState extends State<NavigationPage> {
   Map<String, Widget> pages = {
     HomePage.title: const HomePage(),
     FavoritesPage.title: const FavoritesPage(),
+    RecentsPage.title: const RecentsPage(),
+    'Search': const Center(
+      child: Text('No search yet!'),
+    ),
   };
-
-  @override
-  void initState() {
-    instance<HomeBloc>().add(LoadTvShows());
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {

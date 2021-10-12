@@ -1,6 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:netflapp/core/failures/failure.dart';
+import '../../../../core/failures/failure.dart';
 
 import '../../../../data/models/tv_show_model.dart';
 import '../../../../domain/respository/tv_show_respository.dart';

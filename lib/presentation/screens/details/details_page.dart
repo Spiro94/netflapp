@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+
 import '../../../core/utils/constants.dart';
 import '../../../data/models/tv_show_model.dart';
-import '../episodes/episodes_page.dart';
 import '../../widgets/button_widget.dart';
 import '../../widgets/rating_stars_widget.dart';
+import '../episodes/episodes_page.dart';
 
 class DetailsPage extends StatelessWidget {
   static const String routeName = '/details_page';

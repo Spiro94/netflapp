@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'presentation/screens/episodes/bloc/episodes_bloc.dart';
 
 import 'core/dependency_injection/dependency_injection.dart';
 import 'core/routes/routes.dart';
 import 'core/theme/theme_data.dart';
+import 'presentation/screens/episodes/bloc/episodes_bloc.dart';
 import 'presentation/screens/home/bloc/home_bloc.dart';
 import 'presentation/screens/login/bloc/authentication_bloc.dart';
+import 'presentation/screens/recents/bloc/recents_bloc.dart';
 import 'presentation/screens/splash/splash_page.dart';
 
 class MyApp extends StatelessWidget {
@@ -25,6 +26,9 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider<EpisodesBloc>(
           create: (BuildContext context) => instance<EpisodesBloc>(),
+        ),
+        BlocProvider<RecentsBloc>(
+          create: (BuildContext context) => instance<RecentsBloc>(),
         ),
       ],
       child: MaterialApp(

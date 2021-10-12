@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import '../screens/details/details_page.dart';
 
 import '../../core/utils/constants.dart';
 import '../../data/models/tv_show_model.dart';
+import '../screens/details/details_page.dart';
 import 'button_widget.dart';
 import 'rating_stars_widget.dart';
 

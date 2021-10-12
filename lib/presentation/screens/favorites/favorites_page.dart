@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
 import '../../../core/dependency_injection/dependency_injection.dart';
-import '../home/bloc/home_bloc.dart';
 import '../../widgets/loading_widget.dart';
 import '../../widgets/series_info_widget.dart';
+import '../home/bloc/home_bloc.dart';
 
 class FavoritesPage extends StatelessWidget {
   static const title = 'Favorites';
