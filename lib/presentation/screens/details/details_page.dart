@@ -22,11 +22,14 @@ class DetailsPage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            ClipRRect(
-              borderRadius: BorderRadius.circular(16.0),
-              child: Image(
-                  height: MediaQuery.of(context).size.height / 2,
-                  image: NetworkImage(imageUrl + (model.posterPath ?? ''))),
+            Hero(
+              tag: model.id.toString(),
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(16.0),
+                child: Image(
+                    height: MediaQuery.of(context).size.height / 2,
+                    image: NetworkImage(imageUrl + (model.posterPath ?? ''))),
+              ),
             ),
             Text(
               model.name ?? '',

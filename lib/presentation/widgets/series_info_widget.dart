@@ -29,11 +29,14 @@ class _SeriesInfoWidgetState extends State<SeriesInfoWidget> {
         children: [
           SizedBox(
             width: 100,
-            child: ClipRRect(
-                borderRadius: BorderRadius.circular(8.0),
-                child: Image(
-                    image: NetworkImage(
-                        imageUrl + (widget.model.posterPath ?? '')))),
+            child: Hero(
+              tag: widget.model.id.toString(),
+              child: ClipRRect(
+                  borderRadius: BorderRadius.circular(8.0),
+                  child: Image(
+                      image: NetworkImage(
+                          imageUrl + (widget.model.posterPath ?? '')))),
+            ),
           ),
           const SizedBox(
             width: 30,

@@ -26,11 +26,14 @@ class SeriesPosterWidget extends StatelessWidget {
           children: [
             SizedBox(
               height: 150,
-              child: ClipRRect(
-                  borderRadius: BorderRadius.circular(8.0),
-                  child: Image(
-                      image:
-                          NetworkImage(imageUrl + (model.posterPath ?? '')))),
+              child: Hero(
+                tag: model.id.toString(),
+                child: ClipRRect(
+                    borderRadius: BorderRadius.circular(8.0),
+                    child: Image(
+                        image:
+                            NetworkImage(imageUrl + (model.posterPath ?? '')))),
+              ),
             ),
             Text(
               model.name ?? '',
