@@ -35,12 +35,12 @@ class _EpisodesPageState extends State<EpisodesPage> {
     ThemeData theme = Theme.of(context);
     return BlocBuilder<EpisodesBloc, EpisodesState>(
       builder: (context, state) {
-        Widget body = Container(
-          color: Colors.black87,
-          child: const LoadingWidget(),
+        Widget body = const Center(
+          child: LoadingWidget(),
         );
         if (state is EpisodesLoaded) {
           body = PageView.builder(
+            physics: const NeverScrollableScrollPhysics(),
             controller: _pageController,
             itemCount: state.model.episodes.length,
             itemBuilder: (context, index) {

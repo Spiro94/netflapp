@@ -21,17 +21,23 @@ class FavoritesPage extends StatelessWidget {
           return Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20),
             child: state.favorites.isNotEmpty
-                ? ListView.builder(
-                    itemCount: state.favorites.length,
-                    itemBuilder: (context, index) {
-                      return SeriesInfoWidget(
-                        model: state.favorites[index],
-                        onPressed: (delete) {
-                          instance<HomeBloc>().add(AddFavoriteFromHome(
-                              state.favorites[index], delete));
-                        },
-                      );
-                    })
+                ? NotificationListener<OverscrollIndicatorNotification>(
+                    onNotification: (overscroll) {
+                      overscroll.disallowGlow();
+                      return true;
+                    },
+                    child: ListView.builder(
+                        itemCount: state.favorites.length,
+                        itemBuilder: (context, index) {
+                          return SeriesInfoWidget(
+                            model: state.favorites[index],
+                            onPressed: (delete) {
+                              instance<HomeBloc>().add(AddFavoriteFromHome(
+                                  state.favorites[index], delete));
+                            },
+                          );
+                        }),
+                  )
                 : const Center(
                     child: Text(
                       'Oh no!\nThere\'s no favorite series added yet!',

@@ -26,63 +26,70 @@ class _HomePageState extends State<HomePage> {
             child: LoadingWidget(),
           );
         } else if (state is TvShowsLoaded) {
-          return ListView(
-            padding: const EdgeInsets.symmetric(
-              horizontal: 20,
-              vertical: 10,
+          return NotificationListener<OverscrollIndicatorNotification>(
+            onNotification: (overscroll) {
+              overscroll.disallowGlow();
+              return true;
+            },
+            child: ListView(
+              padding: const EdgeInsets.symmetric(
+                horizontal: 20,
+                vertical: 10,
+              ),
+              children: [
+                Text(
+                  'Popular',
+                  style: _theme.textTheme.headline3,
+                ),
+                SizedBox(
+                    height: 250,
+                    child: ListView.builder(
+                      itemCount: state.popular.length,
+                      padding: const EdgeInsets.symmetric(vertical: 20),
+                      scrollDirection: Axis.horizontal,
+                      itemBuilder: (context, index) {
+                        return SeriesPosterWidget(model: state.popular[index]);
+                      },
+                    )),
+                GestureDetector(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      Text(
+                        'See all',
+                        textAlign: TextAlign.right,
+                        style: _theme.textTheme.headline6
+                            ?.apply(color: _theme.colorScheme.primary),
+                      ),
+                      Icon(
+                        Icons.arrow_forward_ios_rounded,
+                        color: _theme.colorScheme.primary,
+                      ),
+                    ],
+                  ),
+                ),
+                const Padding(
+                  padding: EdgeInsets.symmetric(vertical: 20),
+                  child: Divider(
+                    thickness: 2,
+                  ),
+                ),
+                Text(
+                  'Recommendations',
+                  style: _theme.textTheme.headline3,
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                ...state.recommended.map((e) => SeriesInfoWidget(
+                      model: e,
+                      onPressed: (delete) {
+                        instance<HomeBloc>()
+                            .add(AddFavoriteFromHome(e, delete));
+                      },
+                    ))
+              ],
             ),
-            children: [
-              Text(
-                'Popular',
-                style: _theme.textTheme.headline3,
-              ),
-              SizedBox(
-                  height: 250,
-                  child: ListView.builder(
-                    itemCount: state.popular.length,
-                    padding: const EdgeInsets.symmetric(vertical: 20),
-                    scrollDirection: Axis.horizontal,
-                    itemBuilder: (context, index) {
-                      return SeriesPosterWidget(model: state.popular[index]);
-                    },
-                  )),
-              GestureDetector(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    Text(
-                      'See all',
-                      textAlign: TextAlign.right,
-                      style: _theme.textTheme.headline6
-                          ?.apply(color: _theme.colorScheme.primary),
-                    ),
-                    Icon(
-                      Icons.arrow_forward_ios_rounded,
-                      color: _theme.colorScheme.primary,
-                    ),
-                  ],
-                ),
-              ),
-              const Padding(
-                padding: EdgeInsets.symmetric(vertical: 20),
-                child: Divider(
-                  thickness: 2,
-                ),
-              ),
-              Text(
-                'Recommendations',
-                style: _theme.textTheme.headline3,
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              ...state.recommended.map((e) => SeriesInfoWidget(
-                    model: e,
-                    onPressed: (delete) {
-                      instance<HomeBloc>().add(AddFavoriteFromHome(e, delete));
-                    },
-                  ))
-            ],
           );
         } else {
           return const Center(
