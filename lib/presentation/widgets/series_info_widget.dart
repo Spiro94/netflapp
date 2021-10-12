@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:netflapp/presentation/screens/details/details_page.dart';
 
 import '../../core/utils/constants.dart';
 import '../../data/models/tv_show_model.dart';
@@ -31,11 +32,20 @@ class _SeriesInfoWidgetState extends State<SeriesInfoWidget> {
             width: 100,
             child: Hero(
               tag: widget.model.id.toString(),
-              child: ClipRRect(
+              child: GestureDetector(
+                onTap: () {
+                  Navigator.pushNamed(context, DetailsPage.routeName,
+                      arguments: widget.model);
+                },
+                child: ClipRRect(
                   borderRadius: BorderRadius.circular(8.0),
                   child: Image(
-                      image: NetworkImage(
-                          imageUrl + (widget.model.posterPath ?? '')))),
+                    image: NetworkImage(
+                      imageUrl + (widget.model.posterPath ?? ''),
+                    ),
+                  ),
+                ),
+              ),
             ),
           ),
           const SizedBox(
@@ -65,7 +75,10 @@ class _SeriesInfoWidgetState extends State<SeriesInfoWidget> {
                     SizedBox(
                       width: 125,
                       child: ButtonWidget(
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.pushNamed(context, DetailsPage.routeName,
+                              arguments: widget.model);
+                        },
                         child: Text(
                           'Watch Now',
                           style: _theme.textTheme.headline5
