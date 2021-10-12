@@ -15,7 +15,7 @@ class DetailsPage extends StatelessWidget {
     ThemeData _theme = Theme.of(context);
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Details'),
+        title: Text(model.name),
       ),
       body: SizedBox(
         width: double.infinity,
