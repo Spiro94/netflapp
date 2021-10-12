@@ -30,7 +30,7 @@ class SplashPage extends StatelessWidget {
         backgroundColor: Colors.black,
         body: Center(
           child: Image(
-            image: AssetImage('assets/images/netflapp.png'),
+            image: AssetImage('assets/images/n_logo_launcher.png'),
           ),
         ),
       ),
