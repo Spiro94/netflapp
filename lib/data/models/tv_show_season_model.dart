@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import 'package:netflapp/data/models/tv_show_episode_model.dart';
+import 'tv_show_episode_model.dart';
 
 class TvShowSeasonModel extends Equatable {
   final int id;

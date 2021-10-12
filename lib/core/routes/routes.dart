@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:netflapp/data/models/tv_show_model.dart';
-import 'package:netflapp/presentation/screens/details/details_page.dart';
-import 'package:netflapp/presentation/screens/episodes/episodes_page.dart';
-import 'package:netflapp/presentation/screens/splash/splash_page.dart';
+import '../../data/models/tv_show_model.dart';
+import '../../presentation/screens/details/details_page.dart';
+import '../../presentation/screens/episodes/episodes_page.dart';
+import '../../presentation/screens/splash/splash_page.dart';
 
 import '../../presentation/screens/login/intro_login.dart';
 import '../../presentation/screens/navigation/navigation_page.dart';

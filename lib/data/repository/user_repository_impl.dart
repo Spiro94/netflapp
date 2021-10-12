@@ -1,5 +1,6 @@
-import 'package:netflapp/domain/respository/user_respository.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+import '../../domain/respository/user_respository.dart';
 
 class UserRepositoryImpl implements UserRepository {
   @override

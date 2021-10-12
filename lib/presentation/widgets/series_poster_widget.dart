@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:netflapp/presentation/screens/details/details_page.dart';
+import '../screens/details/details_page.dart';
 
 import '../../core/utils/constants.dart';
 import '../../data/models/tv_show_model.dart';

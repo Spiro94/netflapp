@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:netflapp/core/utils/constants.dart';
-import 'package:netflapp/data/models/tv_show_model.dart';
-import 'package:netflapp/presentation/screens/episodes/episodes_page.dart';
-import 'package:netflapp/presentation/widgets/button_widget.dart';
-import 'package:netflapp/presentation/widgets/rating_stars_widget.dart';
+import '../../../core/utils/constants.dart';
+import '../../../data/models/tv_show_model.dart';
+import '../episodes/episodes_page.dart';
+import '../../widgets/button_widget.dart';
+import '../../widgets/rating_stars_widget.dart';
 
 class DetailsPage extends StatelessWidget {
   static const String routeName = '/details_page';

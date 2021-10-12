@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:netflapp/data/models/tv_show_episode_model.dart';
+import '../../../../data/models/tv_show_episode_model.dart';
 
 class VoteYearSeasonWidget extends StatelessWidget {
   const VoteYearSeasonWidget({
