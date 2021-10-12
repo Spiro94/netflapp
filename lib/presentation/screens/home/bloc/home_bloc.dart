@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:netflapp/core/failures/failure.dart';
 
 import '../../../../data/models/tv_show_model.dart';
 import '../../../../domain/respository/tv_show_respository.dart';
@@ -29,59 +30,71 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     List<TvShowModel> favoriteSeries = [];
 
     var popRes = await tvshowRepository.getPopular();
-    popRes.fold((l) => emit(TvShowsLoadFailed()), (r) => popularSeries = r);
+    Failure? failure;
+    popRes.fold((l) => failure = l, (r) => popularSeries = r);
 
-    var recoRes = await tvshowRepository.getRecommended();
+    if (failure == null) {
+      var recoRes = await tvshowRepository.getRecommended();
 
-    recoRes.fold(
-        (l) => emit(TvShowsLoadFailed()), (r) => recommendedSeries = r);
+      recoRes.fold((l) => failure = l, (r) => recommendedSeries = r);
 
-    var favRes = await tvshowRepository.getFavorites();
+      if (failure == null) {
+        var favRes = await tvshowRepository.getFavorites();
 
-    favRes.fold((l) => emit(TvShowsLoadFailed()), (r) => favoriteSeries = r);
+        favRes.fold((l) => failure = l, (r) => favoriteSeries = r);
 
-    List<int> indexes = [];
-    List<TvShowModel> newRecommended = [];
-    for (var serie in favoriteSeries) {
-      int index =
-          recommendedSeries.indexWhere((element) => element.id == serie.id);
-      if (index != -1) indexes.add(index);
-    }
+        if (failure == null) {
+          List<int> indexes = [];
+          List<TvShowModel> newRecommended = [];
+          for (var serie in favoriteSeries) {
+            int index = recommendedSeries
+                .indexWhere((element) => element.id == serie.id);
+            if (index != -1) indexes.add(index);
+          }
 
-    for (var i = 0; i < recommendedSeries.length; i++) {
-      if (indexes.contains(i)) {
-        newRecommended.add(
-          TvShowModel(
-            recommendedSeries[i].id,
-            recommendedSeries[i].posterPath,
-            recommendedSeries[i].name,
-            recommendedSeries[i].voteAverage,
-            recommendedSeries[i].numberOfEpisodes,
-            recommendedSeries[i].numberOfSeasons,
-            true,
-          ),
-        );
+          for (var i = 0; i < recommendedSeries.length; i++) {
+            if (indexes.contains(i)) {
+              newRecommended.add(
+                TvShowModel(
+                  recommendedSeries[i].id,
+                  recommendedSeries[i].posterPath,
+                  recommendedSeries[i].name,
+                  recommendedSeries[i].voteAverage,
+                  recommendedSeries[i].numberOfEpisodes,
+                  recommendedSeries[i].numberOfSeasons,
+                  true,
+                ),
+              );
+            } else {
+              newRecommended.add(recommendedSeries[i]);
+            }
+          }
+
+          emit(TvShowsLoaded(
+            popularSeries,
+            newRecommended,
+            favoriteSeries,
+          ));
+        } else {
+          emit(TvShowsLoadFailed());
+        }
       } else {
-        newRecommended.add(recommendedSeries[i]);
+        emit(TvShowsLoadFailed());
       }
+    } else {
+      emit(TvShowsLoadFailed());
     }
-
-    emit(TvShowsLoaded(
-      popularSeries,
-      newRecommended,
-      favoriteSeries,
-    ));
   }
 
   Future<void> _addFavoriteFromHome(
       AddFavoriteFromHome event, Emitter<HomeState> emit) async {
     if (state is TvShowsLoaded) {
-      var favRes = await tvshowRepository.addFavorite(
+      var result = await tvshowRepository.addFavorite(
         event.model,
         delete: event.delete,
       );
 
-      if (favRes) {
+      if (result) {
         var newRecommended =
             (state as TvShowsLoaded).recommended.map<TvShowModel>((element) {
           if (element.id == event.model.id) {
@@ -102,23 +115,25 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
         var getFavRes = await tvshowRepository.getFavorites();
 
         List<TvShowModel> favoriteSeries = [];
-
-        getFavRes.fold(
-            (l) => emit(TvShowsLoadFailed()), (r) => favoriteSeries = r);
-
-        if (event.delete) {
-          emit(
-            TvShowsLoaded(List.from((state as TvShowsLoaded).popular),
+        Failure? failure;
+        getFavRes.fold((l) => failure = l, (r) => favoriteSeries = r);
+        if (failure == null) {
+          if (event.delete) {
+            emit(
+              TvShowsLoaded(List.from((state as TvShowsLoaded).popular),
+                  newRecommended, favoriteSeries,
+                  flag: !(state as TvShowsLoaded).flag),
+            );
+          } else {
+            emit(TvShowsLoaded(List.from((state as TvShowsLoaded).popular),
                 newRecommended, favoriteSeries,
-                flag: !(state as TvShowsLoaded).flag),
-          );
+                flag: !(state as TvShowsLoaded).flag));
+          }
         } else {
-          emit(TvShowsLoaded(List.from((state as TvShowsLoaded).popular),
-              newRecommended, favoriteSeries,
-              flag: !(state as TvShowsLoaded).flag));
+          emit(TvShowsLoadFailed());
         }
       } else {
-        emit(FavoriteAddedFailed());
+        emit(TvShowsLoadFailed());
       }
     }
   }

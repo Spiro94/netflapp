@@ -18,6 +18,7 @@ class EpisodesBloc extends Bloc<EpisodesEvent, EpisodesState> {
   }
 
   _loadEpisodes(LoadEpisodes event, Emitter<EpisodesState> emit) async {
+    emit(EpisodesLoading());
     var result = await tvshowRepository.getSeasons(event.id);
 
     result.fold(
