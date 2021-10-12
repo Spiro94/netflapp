@@ -29,18 +29,21 @@ class SeriesPosterWidget extends StatelessWidget {
               child: Hero(
                 tag: model.id.toString(),
                 child: ClipRRect(
-                    borderRadius: BorderRadius.circular(8.0),
-                    child: Image(
-                        image:
-                            NetworkImage(imageUrl + (model.posterPath ?? '')))),
+                  borderRadius: BorderRadius.circular(8.0),
+                  child: Image(
+                    image: NetworkImage(
+                      imageUrl + (model.posterPath),
+                    ),
+                  ),
+                ),
               ),
             ),
             Text(
-              model.name ?? '',
+              model.name,
               overflow: TextOverflow.clip,
               style: Theme.of(context).textTheme.caption,
             ),
-            RatingStarsWidget(calification: model.voteAverage ?? 1),
+            RatingStarsWidget(calification: model.voteAverage),
           ],
         ),
       ),

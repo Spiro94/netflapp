@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../widgets/loading_widget.dart';
 
 import '../../../core/dependency_injection/dependency_injection.dart';
 import '../../widgets/series_info_widget.dart';
@@ -21,19 +22,8 @@ class _HomePageState extends State<HomePage> {
     return BlocBuilder<HomeBloc, HomeState>(
       builder: (context, state) {
         if (state is TvShowsLoading) {
-          return Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: const [
-                CircularProgressIndicator(),
-                SizedBox(
-                  height: 15,
-                ),
-                Text(
-                  'Loading',
-                ),
-              ],
-            ),
+          return const Center(
+            child: LoadingWidget(),
           );
         } else if (state is TvShowsLoaded) {
           return ListView(

@@ -1,6 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:netflapp/domain/respository/user_respository.dart';
+import '../../../../domain/respository/user_respository.dart';
 
 part 'authentication_event.dart';
 part 'authentication_state.dart';

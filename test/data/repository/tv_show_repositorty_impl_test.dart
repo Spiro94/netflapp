@@ -24,7 +24,7 @@ void main() {
   group('GetPopular', () {
     List<TvShowModel> tPopulars = [
       const TvShowModel(31917, '/vC324sdfcS313vh9QXwijLIHPJp.jpg',
-          'Pretty Little Liars', 5.04, null, null)
+          'Pretty Little Liars', 5.04, 0, 0)
     ];
     test('should perform a GET request on the endpoint URL', () async {
       //arrange
@@ -85,7 +85,7 @@ void main() {
   group('GetRecommended', () {
     List<TvShowModel> tRecommended = [
       const TvShowModel(64122, '/aurZJ8UsXqhGwwBnNuZsPNepY8y.jpg',
-          'The Shannara Chronicles', 5.5, null, null)
+          'The Shannara Chronicles', 5.5, 0, 0)
     ];
     test('should perform a GET request on the endpoint URL', () async {
       //arrange

@@ -699,3 +699,394 @@ class TvShow {
     return data;
   }
 }
+
+class TvShowSeasonEpisodesGuestStars {
+/*
+{
+  "credit_id": "5256c8a219c2956ff6046f40",
+  "order": 0,
+  "character": "Khal Drogo",
+  "adult": false,
+  "gender": 2,
+  "id": 117642,
+  "known_for_department": "Acting",
+  "name": "Jason Momoa",
+  "original_name": "Jason Momoa",
+  "popularity": 9.159,
+  "profile_path": "/6dEFBpZH8C8OijsynkSajQT99Pb.jpg"
+} 
+*/
+
+  String? creditId;
+  int? order;
+  String? character;
+  bool? adult;
+  int? gender;
+  int? id;
+  String? knownForDepartment;
+  String? name;
+  String? originalName;
+  double? popularity;
+  String? profilePath;
+
+  TvShowSeasonEpisodesGuestStars({
+    this.creditId,
+    this.order,
+    this.character,
+    this.adult,
+    this.gender,
+    this.id,
+    this.knownForDepartment,
+    this.name,
+    this.originalName,
+    this.popularity,
+    this.profilePath,
+  });
+  TvShowSeasonEpisodesGuestStars.fromJson(Map<String, dynamic> json) {
+    creditId = json["credit_id"]?.toString();
+    order = json["order"]?.toInt();
+    character = json["character"]?.toString();
+    adult = json["adult"];
+    gender = json["gender"]?.toInt();
+    id = json["id"]?.toInt();
+    knownForDepartment = json["known_for_department"]?.toString();
+    name = json["name"]?.toString();
+    originalName = json["original_name"]?.toString();
+    popularity = json["popularity"]?.toDouble();
+    profilePath = json["profile_path"]?.toString();
+  }
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data["credit_id"] = creditId;
+    data["order"] = order;
+    data["character"] = character;
+    data["adult"] = adult;
+    data["gender"] = gender;
+    data["id"] = id;
+    data["known_for_department"] = knownForDepartment;
+    data["name"] = name;
+    data["original_name"] = originalName;
+    data["popularity"] = popularity;
+    data["profile_path"] = profilePath;
+    return data;
+  }
+}
+
+class TvShowSeasonEpisodesCrew {
+/*
+{
+  "department": "Directing",
+  "job": "Director",
+  "credit_id": "5256c8a219c2956ff6046e77",
+  "adult": false,
+  "gender": 2,
+  "id": 44797,
+  "known_for_department": "Directing",
+  "name": "Timothy Van Patten",
+  "original_name": "Timothy Van Patten",
+  "popularity": 2.744,
+  "profile_path": "/MzSOFrd99HRdr6pkSRSctk3kBR.jpg"
+} 
+*/
+
+  String? department;
+  String? job;
+  String? creditId;
+  bool? adult;
+  int? gender;
+  int? id;
+  String? knownForDepartment;
+  String? name;
+  String? originalName;
+  double? popularity;
+  String? profilePath;
+
+  TvShowSeasonEpisodesCrew({
+    this.department,
+    this.job,
+    this.creditId,
+    this.adult,
+    this.gender,
+    this.id,
+    this.knownForDepartment,
+    this.name,
+    this.originalName,
+    this.popularity,
+    this.profilePath,
+  });
+  TvShowSeasonEpisodesCrew.fromJson(Map<String, dynamic> json) {
+    department = json["department"]?.toString();
+    job = json["job"]?.toString();
+    creditId = json["credit_id"]?.toString();
+    adult = json["adult"];
+    gender = json["gender"]?.toInt();
+    id = json["id"]?.toInt();
+    knownForDepartment = json["known_for_department"]?.toString();
+    name = json["name"]?.toString();
+    originalName = json["original_name"]?.toString();
+    popularity = json["popularity"]?.toDouble();
+    profilePath = json["profile_path"]?.toString();
+  }
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data["department"] = department;
+    data["job"] = job;
+    data["credit_id"] = creditId;
+    data["adult"] = adult;
+    data["gender"] = gender;
+    data["id"] = id;
+    data["known_for_department"] = knownForDepartment;
+    data["name"] = name;
+    data["original_name"] = originalName;
+    data["popularity"] = popularity;
+    data["profile_path"] = profilePath;
+    return data;
+  }
+}
+
+class TvShowSeasonEpisodes {
+/*
+{
+  "air_date": "2011-04-17",
+  "episode_number": 1,
+  "crew": [
+    {
+      "department": "Directing",
+      "job": "Director",
+      "credit_id": "5256c8a219c2956ff6046e77",
+      "adult": false,
+      "gender": 2,
+      "id": 44797,
+      "known_for_department": "Directing",
+      "name": "Timothy Van Patten",
+      "original_name": "Timothy Van Patten",
+      "popularity": 2.744,
+      "profile_path": "/MzSOFrd99HRdr6pkSRSctk3kBR.jpg"
+    }
+  ],
+  "guest_stars": [
+    {
+      "credit_id": "5256c8a219c2956ff6046f40",
+      "order": 0,
+      "character": "Khal Drogo",
+      "adult": false,
+      "gender": 2,
+      "id": 117642,
+      "known_for_department": "Acting",
+      "name": "Jason Momoa",
+      "original_name": "Jason Momoa",
+      "popularity": 9.159,
+      "profile_path": "/6dEFBpZH8C8OijsynkSajQT99Pb.jpg"
+    }
+  ],
+  "id": 63056,
+  "name": "Winter Is Coming",
+  "overview": "Jon Arryn, the Hand of the King, is dead. King Robert Baratheon plans to ask his oldest friend, Eddard Stark, to take Jon's place. Across the sea, Viserys Targaryen plans to wed his sister to a nomadic warlord in exchange for an army.",
+  "production_code": "101",
+  "season_number": 1,
+  "still_path": "/xIfvIM7YgkADTrqp23rm3CLaOVQ.jpg",
+  "vote_average": 7.7,
+  "vote_count": 179
+} 
+*/
+
+  String? airDate;
+  int? episodeNumber;
+  List<TvShowSeasonEpisodesCrew?>? crew;
+  List<TvShowSeasonEpisodesGuestStars?>? guestStars;
+  int? id;
+  String? name;
+  String? overview;
+  String? productionCode;
+  int? seasonNumber;
+  String? stillPath;
+  double? voteAverage;
+  int? voteCount;
+
+  TvShowSeasonEpisodes({
+    this.airDate,
+    this.episodeNumber,
+    this.crew,
+    this.guestStars,
+    this.id,
+    this.name,
+    this.overview,
+    this.productionCode,
+    this.seasonNumber,
+    this.stillPath,
+    this.voteAverage,
+    this.voteCount,
+  });
+  TvShowSeasonEpisodes.fromJson(Map<String, dynamic> json) {
+    airDate = json["air_date"]?.toString();
+    episodeNumber = json["episode_number"]?.toInt();
+    if (json["crew"] != null) {
+      final v = json["crew"];
+      final arr0 = <TvShowSeasonEpisodesCrew>[];
+      v.forEach((v) {
+        arr0.add(TvShowSeasonEpisodesCrew.fromJson(v));
+      });
+      crew = arr0;
+    }
+    if (json["guest_stars"] != null) {
+      final v = json["guest_stars"];
+      final arr0 = <TvShowSeasonEpisodesGuestStars>[];
+      v.forEach((v) {
+        arr0.add(TvShowSeasonEpisodesGuestStars.fromJson(v));
+      });
+      guestStars = arr0;
+    }
+    id = json["id"]?.toInt();
+    name = json["name"]?.toString();
+    overview = json["overview"]?.toString();
+    productionCode = json["production_code"]?.toString();
+    seasonNumber = json["season_number"]?.toInt();
+    stillPath = json["still_path"]?.toString();
+    voteAverage = json["vote_average"]?.toDouble();
+    voteCount = json["vote_count"]?.toInt();
+  }
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data["air_date"] = airDate;
+    data["episode_number"] = episodeNumber;
+    if (crew != null) {
+      final v = crew;
+      final arr0 = [];
+      for (var v in v!) {
+        arr0.add(v!.toJson());
+      }
+      data["crew"] = arr0;
+    }
+    if (guestStars != null) {
+      final v = guestStars;
+      final arr0 = [];
+      for (var v in v!) {
+        arr0.add(v!.toJson());
+      }
+      data["guest_stars"] = arr0;
+    }
+    data["id"] = id;
+    data["name"] = name;
+    data["overview"] = overview;
+    data["production_code"] = productionCode;
+    data["season_number"] = seasonNumber;
+    data["still_path"] = stillPath;
+    data["vote_average"] = voteAverage;
+    data["vote_count"] = voteCount;
+    return data;
+  }
+}
+
+class TvShowSeason {
+/*
+{
+  "_id": "5256c89f19c2956ff6046d47",
+  "air_date": "2011-04-17",
+  "episodes": [
+    {
+      "air_date": "2011-04-17",
+      "episode_number": 1,
+      "crew": [
+        {
+          "department": "Directing",
+          "job": "Director",
+          "credit_id": "5256c8a219c2956ff6046e77",
+          "adult": false,
+          "gender": 2,
+          "id": 44797,
+          "known_for_department": "Directing",
+          "name": "Timothy Van Patten",
+          "original_name": "Timothy Van Patten",
+          "popularity": 2.744,
+          "profile_path": "/MzSOFrd99HRdr6pkSRSctk3kBR.jpg"
+        }
+      ],
+      "guest_stars": [
+        {
+          "credit_id": "5256c8a219c2956ff6046f40",
+          "order": 0,
+          "character": "Khal Drogo",
+          "adult": false,
+          "gender": 2,
+          "id": 117642,
+          "known_for_department": "Acting",
+          "name": "Jason Momoa",
+          "original_name": "Jason Momoa",
+          "popularity": 9.159,
+          "profile_path": "/6dEFBpZH8C8OijsynkSajQT99Pb.jpg"
+        }
+      ],
+      "id": 63056,
+      "name": "Winter Is Coming",
+      "overview": "Jon Arryn, the Hand of the King, is dead. King Robert Baratheon plans to ask his oldest friend, Eddard Stark, to take Jon's place. Across the sea, Viserys Targaryen plans to wed his sister to a nomadic warlord in exchange for an army.",
+      "production_code": "101",
+      "season_number": 1,
+      "still_path": "/xIfvIM7YgkADTrqp23rm3CLaOVQ.jpg",
+      "vote_average": 7.7,
+      "vote_count": 179
+    }
+  ],
+  "name": "Season 1",
+  "overview": "Trouble is brewing in the Seven Kingdoms of Westeros. For the driven inhabitants of this visionary world, control of Westeros' Iron Throne holds the lure of great power. But in a land where the seasons can last a lifetime, winter is coming...and beyond the Great Wall that protects them, an ancient evil has returned. In Season One, the story centers on three primary areas: the Stark and the Lannister families, whose designs on controlling the throne threaten a tenuous peace; the dragon princess Daenerys, heir to the former dynasty, who waits just over the Narrow Sea with her malevolent brother Viserys; and the Great Wall--a massive barrier of ice where a forgotten danger is stirring.",
+  "id": 3624,
+  "poster_path": "/zwaj4egrhnXOBIit1tyb4Sbt3KP.jpg",
+  "season_number": 1
+} 
+*/
+
+  String? id_1;
+  String? airDate;
+  List<TvShowSeasonEpisodes?>? episodes;
+  String? name;
+  String? overview;
+  int? id;
+  String? posterPath;
+  int? seasonNumber;
+
+  TvShowSeason({
+    this.id_1,
+    this.airDate,
+    this.episodes,
+    this.name,
+    this.overview,
+    this.id,
+    this.posterPath,
+    this.seasonNumber,
+  });
+  TvShowSeason.fromJson(Map<String, dynamic> json) {
+    id_1 = json["_id"]?.toString();
+    airDate = json["air_date"]?.toString();
+    if (json["episodes"] != null) {
+      final v = json["episodes"];
+      final arr0 = <TvShowSeasonEpisodes>[];
+      v.forEach((v) {
+        arr0.add(TvShowSeasonEpisodes.fromJson(v));
+      });
+      episodes = arr0;
+    }
+    name = json["name"]?.toString();
+    overview = json["overview"]?.toString();
+    id = json["id"]?.toInt();
+    posterPath = json["poster_path"]?.toString();
+    seasonNumber = json["season_number"]?.toInt();
+  }
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data["_id"] = id_1;
+    data["air_date"] = airDate;
+    if (episodes != null) {
+      final v = episodes;
+      final arr0 = [];
+      for (var v in v!) {
+        arr0.add(v!.toJson());
+      }
+      data["episodes"] = arr0;
+    }
+    data["name"] = name;
+    data["overview"] = overview;
+    data["id"] = id;
+    data["poster_path"] = posterPath;
+    data["season_number"] = seasonNumber;
+    return data;
+  }
+}

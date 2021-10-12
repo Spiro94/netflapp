@@ -1,23 +1,20 @@
 import 'package:equatable/equatable.dart';
 
-class TvShowModel extends Equatable {
-  final int? id;
-  final String? posterPath;
-  final String? name;
-  final double? voteAverage;
-  final int? numberOfEpisodes;
-  final int? numberOfSeasons;
-  final bool isFavorite;
+import 'tv_show_episode_model.dart';
 
-  const TvShowModel(
-    this.id,
-    this.posterPath,
-    this.name,
-    this.voteAverage,
-    this.numberOfEpisodes,
-    this.numberOfSeasons, [
-    this.isFavorite = false,
-  ]);
+class TvShowModel extends Equatable {
+  final int id;
+  final String posterPath;
+  final String name;
+  final double voteAverage;
+  final int numberOfEpisodes;
+  final int numberOfSeasons;
+  final bool isFavorite;
+  final List<TvShowEpisodeModel> episodes;
+
+  const TvShowModel(this.id, this.posterPath, this.name, this.voteAverage,
+      this.numberOfEpisodes, this.numberOfSeasons,
+      [this.isFavorite = false, this.episodes = const []]);
 
   factory TvShowModel.fromJson(Map<String, dynamic> json) {
     return TvShowModel(
@@ -36,8 +33,8 @@ class TvShowModel extends Equatable {
       'posterPath': posterPath,
       'name': name,
       'voteAverage': voteAverage,
-      'numberOfEpisodes': numberOfEpisodes ?? 0,
-      'numberOfSeasons': numberOfSeasons ?? 0,
+      'numberOfEpisodes': numberOfEpisodes,
+      'numberOfSeasons': numberOfSeasons,
       'isFavorite': true,
     };
   }

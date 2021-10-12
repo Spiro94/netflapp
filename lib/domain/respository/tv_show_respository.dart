@@ -8,4 +8,5 @@ abstract class TvShowRepository {
   Future<Either<Failure, List<TvShowModel>>> getRecommended();
   Future<Either<Failure, List<TvShowModel>>> getFavorites();
   Future<bool> addFavorite(TvShowModel model, {bool delete = false});
+  Future<Either<Failure, TvShowModel>> getSeasons(int id);
 }

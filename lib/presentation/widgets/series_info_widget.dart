@@ -41,7 +41,7 @@ class _SeriesInfoWidgetState extends State<SeriesInfoWidget> {
                   borderRadius: BorderRadius.circular(8.0),
                   child: Image(
                     image: NetworkImage(
-                      imageUrl + (widget.model.posterPath ?? ''),
+                      imageUrl + (widget.model.posterPath),
                     ),
                   ),
                 ),
@@ -58,11 +58,11 @@ class _SeriesInfoWidgetState extends State<SeriesInfoWidget> {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 Text(
-                  widget.model.name ?? '',
+                  widget.model.name,
                   overflow: TextOverflow.clip,
                   style: Theme.of(context).textTheme.caption,
                 ),
-                RatingStarsWidget(calification: widget.model.voteAverage ?? 1),
+                RatingStarsWidget(calification: widget.model.voteAverage),
                 Text(
                   'IMDb: ${widget.model.voteAverage}',
                   style: Theme.of(context).textTheme.overline?.apply(

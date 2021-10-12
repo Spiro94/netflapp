@@ -99,14 +99,15 @@ class AppTheme {
   static const _bold = FontWeight.w700;
 
   static const TextTheme _textTheme = TextTheme(
+    headline2: TextStyle(fontWeight: _semiBold, fontSize: 30.0),
     headline3: TextStyle(fontWeight: _semiBold, fontSize: 24.0),
     headline4: TextStyle(fontWeight: _bold, fontSize: 20.0),
     caption: TextStyle(fontWeight: _semiBold, fontSize: 16.0),
     headline5: TextStyle(fontWeight: _medium, fontSize: 16.0),
     subtitle1: TextStyle(fontWeight: _medium, fontSize: 16.0),
     overline: TextStyle(fontWeight: _medium, fontSize: 12.0),
-    bodyText1: TextStyle(fontWeight: _regular, fontSize: 14.0),
-    subtitle2: TextStyle(fontWeight: _medium, fontSize: 14.0),
+    bodyText1: TextStyle(fontWeight: _regular, fontSize: 12.0),
+    subtitle2: TextStyle(fontWeight: _bold, fontSize: 14.0),
     bodyText2: TextStyle(fontWeight: _regular, fontSize: 16.0),
     headline6: TextStyle(fontWeight: _regular, fontSize: 18.0),
     button: TextStyle(fontWeight: _semiBold, fontSize: 18.0),

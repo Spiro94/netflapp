@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'presentation/screens/episodes/bloc/episodes_bloc.dart';
 
 import 'core/dependency_injection/dependency_injection.dart';
 import 'core/routes/routes.dart';
@@ -21,6 +22,9 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider<HomeBloc>(
           create: (BuildContext context) => instance<HomeBloc>(),
+        ),
+        BlocProvider<EpisodesBloc>(
+          create: (BuildContext context) => instance<EpisodesBloc>(),
         ),
       ],
       child: MaterialApp(

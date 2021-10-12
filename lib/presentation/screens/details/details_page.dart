@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:netflapp/core/utils/constants.dart';
 import 'package:netflapp/data/models/tv_show_model.dart';
+import 'package:netflapp/presentation/screens/episodes/episodes_page.dart';
 import 'package:netflapp/presentation/widgets/button_widget.dart';
 import 'package:netflapp/presentation/widgets/rating_stars_widget.dart';
 
@@ -28,16 +29,16 @@ class DetailsPage extends StatelessWidget {
                 borderRadius: BorderRadius.circular(16.0),
                 child: Image(
                     height: MediaQuery.of(context).size.height / 2,
-                    image: NetworkImage(imageUrl + (model.posterPath ?? ''))),
+                    image: NetworkImage(imageUrl + model.posterPath)),
               ),
             ),
             Text(
-              model.name ?? '',
+              model.name,
               overflow: TextOverflow.clip,
               style: Theme.of(context).textTheme.headline3,
             ),
             RatingStarsWidget(
-              calification: model.voteAverage ?? 1,
+              calification: model.voteAverage,
               size: 20,
             ),
             Text(
@@ -47,7 +48,10 @@ class DetailsPage extends StatelessWidget {
                   ),
             ),
             ButtonWidget(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.of(context)
+                    .pushNamed(EpisodesPage.routeName, arguments: model);
+              },
               child: Text(
                 'Watch Now',
                 style: _theme.textTheme.headline5?.apply(

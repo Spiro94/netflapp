@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../widgets/loading_widget.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../core/dependency_injection/dependency_injection.dart';
@@ -163,18 +164,7 @@ class _IntroLoginPageState extends State<IntroLoginPage> {
                 if (state is AuthenticationLoading)
                   Container(
                     color: Colors.black87,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: const [
-                        CircularProgressIndicator(),
-                        SizedBox(
-                          height: 15,
-                        ),
-                        Text(
-                          'Loading',
-                        ),
-                      ],
-                    ),
+                    child: const LoadingWidget(),
                   )
               ],
             ),

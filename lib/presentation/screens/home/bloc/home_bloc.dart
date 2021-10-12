@@ -22,56 +22,6 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     });
   }
 
-  Future<void> _addFavoriteFromHome(
-      AddFavoriteFromHome event, Emitter<HomeState> emit) async {
-    if (state is TvShowsLoaded) {
-      var favRes = await tvshowRepository.addFavorite(
-        event.model,
-        delete: event.delete,
-      );
-
-      if (favRes) {
-        var newRecommended =
-            (state as TvShowsLoaded).recommended.map<TvShowModel>((element) {
-          if (element.id == event.model.id) {
-            return TvShowModel(
-              event.model.id,
-              event.model.posterPath,
-              event.model.name,
-              event.model.voteAverage,
-              event.model.numberOfEpisodes,
-              event.model.numberOfSeasons,
-              !event.delete,
-            );
-          } else {
-            return element;
-          }
-        }).toList();
-
-        var getFavRes = await tvshowRepository.getFavorites();
-
-        List<TvShowModel> favoriteSeries = [];
-
-        getFavRes.fold(
-            (l) => emit(TvShowsLoadFailed()), (r) => favoriteSeries = r);
-
-        if (event.delete) {
-          emit(
-            TvShowsLoaded(List.from((state as TvShowsLoaded).popular),
-                newRecommended, favoriteSeries,
-                flag: !(state as TvShowsLoaded).flag),
-          );
-        } else {
-          emit(TvShowsLoaded(List.from((state as TvShowsLoaded).popular),
-              newRecommended, favoriteSeries,
-              flag: !(state as TvShowsLoaded).flag));
-        }
-      } else {
-        emit(FavoriteAddedFailed());
-      }
-    }
-  }
-
   Future<void> _loadTvShowsEvent(Emitter<HomeState> emit) async {
     emit(TvShowsLoading());
     List<TvShowModel> popularSeries = [];
@@ -121,5 +71,55 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
       newRecommended,
       favoriteSeries,
     ));
+  }
+
+  Future<void> _addFavoriteFromHome(
+      AddFavoriteFromHome event, Emitter<HomeState> emit) async {
+    if (state is TvShowsLoaded) {
+      var favRes = await tvshowRepository.addFavorite(
+        event.model,
+        delete: event.delete,
+      );
+
+      if (favRes) {
+        var newRecommended =
+            (state as TvShowsLoaded).recommended.map<TvShowModel>((element) {
+          if (element.id == event.model.id) {
+            return TvShowModel(
+              event.model.id,
+              event.model.posterPath,
+              event.model.name,
+              event.model.voteAverage,
+              event.model.numberOfEpisodes,
+              event.model.numberOfSeasons,
+              !event.delete,
+            );
+          } else {
+            return element;
+          }
+        }).toList();
+
+        var getFavRes = await tvshowRepository.getFavorites();
+
+        List<TvShowModel> favoriteSeries = [];
+
+        getFavRes.fold(
+            (l) => emit(TvShowsLoadFailed()), (r) => favoriteSeries = r);
+
+        if (event.delete) {
+          emit(
+            TvShowsLoaded(List.from((state as TvShowsLoaded).popular),
+                newRecommended, favoriteSeries,
+                flag: !(state as TvShowsLoaded).flag),
+          );
+        } else {
+          emit(TvShowsLoaded(List.from((state as TvShowsLoaded).popular),
+              newRecommended, favoriteSeries,
+              flag: !(state as TvShowsLoaded).flag));
+        }
+      } else {
+        emit(FavoriteAddedFailed());
+      }
+    }
   }
 }

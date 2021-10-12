@@ -1,5 +1,6 @@
 import 'package:get_it/get_it.dart';
 import 'package:http/http.dart' as http;
+import '../../presentation/screens/episodes/bloc/episodes_bloc.dart';
 
 import '../../data/repository/tv_show_repositorty_impl.dart';
 import '../../data/repository/user_repository_impl.dart';
@@ -17,4 +18,5 @@ Future<void> initDependencies() async {
       () => TvShowRepositoryImpl(instance()));
   instance.registerSingleton(HomeBloc(instance()));
   instance.registerSingleton(AuthenticationBloc(instance()));
+  instance.registerSingleton(EpisodesBloc(instance()));
 }

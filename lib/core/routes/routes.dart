@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:netflapp/data/models/tv_show_model.dart';
 import 'package:netflapp/presentation/screens/details/details_page.dart';
+import 'package:netflapp/presentation/screens/episodes/episodes_page.dart';
 import 'package:netflapp/presentation/screens/splash/splash_page.dart';
 
 import '../../presentation/screens/login/intro_login.dart';
@@ -9,6 +10,10 @@ import '../../presentation/screens/navigation/navigation_page.dart';
 class RouteGenerator {
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
+      case EpisodesPage.routeName:
+        return MaterialPageRoute(
+            builder: (_) =>
+                EpisodesPage(model: settings.arguments as TvShowModel));
       case DetailsPage.routeName:
         return MaterialPageRoute(
             builder: (_) =>
